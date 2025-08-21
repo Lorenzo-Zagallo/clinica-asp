@@ -58,7 +58,7 @@ Para executar este projeto, você precisará ter o seguinte ambiente de desenvol
 
 -----
 
-## 🚀 Como Executar o Projeto
+## Como Executar o Projeto
 
 1.  **Clone o repositório:**
     ```
