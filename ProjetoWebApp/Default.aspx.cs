@@ -132,7 +132,7 @@ namespace ProjetoWebApp
                     sqlCommand.Parameters.AddWithValue("@ID", id);
                     sqlCommand.Parameters.AddWithValue("@Paciente", novoNome);
                     sqlCommand.Parameters.AddWithValue("Valor", novoValor);
-                    
+
                     sqlConnection.Open();
                     sqlCommand.ExecuteNonQuery();
                 }
@@ -156,7 +156,7 @@ namespace ProjetoWebApp
             int id = Convert.ToInt32(gdvDados.DataKeys[e.RowIndex].Value);
 
             string connectionString = ConfigurationManager.ConnectionStrings["DadosClinicaConnectionString"].ConnectionString;
-            
+
             // use a instrução using para garantir que a conexão seja fechada
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
@@ -174,7 +174,7 @@ namespace ProjetoWebApp
             }
 
             // recarrega os dados do banco para atualizar no GridView
-            gdvDados.DataSource = CarregarDadosDoBanco(); 
+            gdvDados.DataSource = CarregarDadosDoBanco();
             gdvDados.DataBind();
 
             lblMensagem.Text = "Registro removido com sucesso!";
