@@ -39,11 +39,14 @@ clinica-asp/ProjetoWebApp/
 │   └── DadosClinica\_log.ldf				\# Arquivo de log do banco de dados
 ├── UserControls/							\# Pasta para organizar componentes de interface reutilizáveis
 │   ├── MenuSimples.ascx					\# O controle de usuário da interface
-│   ├── MenuSimples.ascx.cs					\# Lógica de Backend para o controle de usuário
-│   └── MenuSimples.ascx.designer.cs		\# Arquivo gerado automaticamente para o controle
-├── Default.aspx							\# Página principal da aplicação (Frontend)
-│   ├── Default.aspx.cs						\# Lógica de Backend para a página Default.aspx
+│   │   ├── MenuSimples.ascx.cs				\# Lógica de Backend para o controle de usuário
+│   │   └── MenuSimples.ascx.designer.cs	\# Arquivo gerado automaticamente para o controle
+├── Cadastro.aspx							\# Página para o cadastro de pacientes (Frontend)
+│   ├── Default.aspx.cs						\# Lógica de Backend para a página Cadastro.aspx
 │   ├── Default.aspx.designer.cs			\# Arquivo gerado automaticamente para a página
+├── Dashboard.aspx							\# Página para exibir os dados dos pacientes (Frontend)
+│   ├── Dashboard.aspx.cs					\# Lógica de Backend para a página Dashboard.aspx
+│   ├── Dashboard.aspx.designer.cs			\# Arquivo gerado automaticamente para a página
 ├── MasterPage.master						\# A página mestre que define o layout global da aplicação
 │   ├── MasterPage.master.cs				\# Lógica de Backend para a Master Page
 │   ├── MasterPage.master.designer.cs		\# Arquivo gerado automaticamente para a Master Page

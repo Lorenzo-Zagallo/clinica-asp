@@ -11,17 +11,8 @@ namespace ProjetoWebApp
 {
 
 
-    public partial class _Default
+    public partial class Cadastro
     {
-
-        /// <summary>
-        /// Controle MenuSimples1.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::ProjetoWebApp.UserControls.MenuSimples MenuSimples1;
 
         /// <summary>
         /// Controle lblMensagem.
@@ -31,24 +22,6 @@ namespace ProjetoWebApp
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensagem;
-
-        /// <summary>
-        /// Controle btnCarregarDados.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCarregarDados;
-
-        /// <summary>
-        /// Controle gdvDados.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gdvDados;
 
         /// <summary>
         /// Controle pnlCadastro.

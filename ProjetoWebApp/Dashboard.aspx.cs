@@ -19,16 +19,15 @@ namespace ProjetoWebApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // A propriedade IsPostBack é verdadeira apenas se a página está sendo recarregada
+            // a propriedade IsPostBack é verdadeira apenas se a página está sendo recarregada
             // após um evento do usuário (como um clique em um botão).
-            // Se for o primeiro carregamento da página, IsPostBack é falso.
+            // se for o primeiro carregamento da página, IsPostBack é falso.
             if (!IsPostBack)
             {
-                // Coloque aqui o código que deve ser executado apenas no primeiro carregamento.
-                // Por exemplo, carregar dados do banco de dados para um GridView.
-
-                // oculta o gridView na primeira vez que a página é carregada
-                gdvDados.Visible = false;
+                // se a página for carregada pela primeira vez (ou após um redirect)
+                gdvDados.DataSource = CarregarDadosDoBanco();
+                gdvDados.DataBind();
+                gdvDados.Visible = true;
             }
         }
 
@@ -48,33 +47,6 @@ namespace ProjetoWebApp
                 }
             }
             return dt;
-        }
-
-        // CRUD - CREATE
-        protected void btnSalvar_Click(object sender, EventArgs e)
-        {
-            if (Page.IsValid)
-            {
-                string connectionString = ConfigurationManager.ConnectionStrings["DadosClinicaConnectionString"].ConnectionString;
-                string query = "INSERT INTO [Pacientes] (Paciente, Valor) VALUES (@Paciente, @Valor)";
-
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
-                {
-                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
-                    {
-                        sqlCommand.Parameters.AddWithValue("@Paciente", txtNome.Text);
-                        sqlCommand.Parameters.AddWithValue("@Valor", decimal.Parse(txtValor.Text));
-                        sqlConnection.Open();
-                        sqlCommand.ExecuteNonQuery(); // executa o comando INSERT
-                    }
-                }
-
-                // define a tabela como visível e vincula a tabela atualizada ao gridView
-                gdvDados.Visible = true;
-                gdvDados.DataSource = CarregarDadosDoBanco(); // recarrega os dados do banco
-                gdvDados.DataBind();
-                lblMensagem.Text = "Novo paciente salvo com sucesso!";
-            }
         }
 
         // CRUD - READ
