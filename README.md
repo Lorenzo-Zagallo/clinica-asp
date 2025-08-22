@@ -6,13 +6,15 @@ Este projeto é um sistema simples de prontuário de clínica, desenvolvido com 
 
 É uma ótima base para quem está começando com a plataforma ASP.NET e deseja entender como o frontend (`.aspx`), o backend (`.aspx.cs`) e a lógica de negócio interagem.
 
-## Tecnologias Utilizadas
+
+### Tecnologias Utilizadas
 
   * **Frontend**: ASP.NET Web Forms (`.aspx`): Utiliza HTML, CSS e JavaScript para a interface de usuário.
   * **Backend**: C\# (`.aspx.cs`): Implementa a lógica de negócio e o controle das operações.
   * **Banco de Dados:** SQL Server (com arquivo `.mdf` local)
   * **Lógica de Negócio**: Totalmente implementada no backend, nos arquivos `.aspx.cs`.
   * **Ambiente de Desenvolvimento:** Visual Studio
+
 
 ### Funcionalidades
 
@@ -24,14 +26,7 @@ O sistema foi projetado para realizar as seguintes operações básicas de geren
 * **Deletar (Delete):** Excluir registros do sistema.
 
 
-## Estrutura do Projeto
-
-A estrutura do projeto segue a convenção padrão de aplicações ASP.NET Web Forms:
-
-Com certeza\! Aqui está a estrutura do projeto no modelo que você pediu, com base nas informações do seu projeto. Você pode copiar e colar este trecho diretamente no seu arquivo `README.md`.
-
-```
-## Estrutura do Projeto
+### Estrutura do Projeto
 
 A estrutura do projeto segue a convenção padrão de aplicações ASP.NET Web Forms:
 
@@ -56,12 +51,14 @@ clinica-asp/ProjetoWebApp/
 
 ```
 
+
 ### Pré-requisitos
 
 Para executar este projeto, você precisará ter o seguinte ambiente de desenvolvimento configurado:
 
   * **Visual Studio** (Versão 2017 ou superior, com a workload de "Desenvolvimento para a Web e ASP.NET" instalada) ou **Visual Studio Code** com as extensões apropriadas para C\#.
   * **.NET Framework** (Versão 4.x ou superior).
+
 
 ### Como Executar o Projeto
 
