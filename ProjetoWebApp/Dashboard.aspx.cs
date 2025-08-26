@@ -35,12 +35,16 @@ namespace ProjetoWebApp
         {
             DataTable dt = new DataTable();
             string connectionString = ConfigurationManager.ConnectionStrings["DadosClinicaConnectionString"].ConnectionString;
-            string query = "SELECT ID, Paciente, Valor FROM [Pacientes]";
+            
+            // string query = "SELECT ID, Paciente, Valor FROM [Pacientes]";
+            string query = "ObterTodosPacientes";
 
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
                 {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
                     sqlConnection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
                     adapter.Fill(dt);
@@ -94,16 +98,20 @@ namespace ProjetoWebApp
             }
 
             string connectionString = ConfigurationManager.ConnectionStrings["DadosClinicaConnectionString"].ConnectionString;
-            string query = "UPDATE [Pacientes] SET Paciente = @Paciente, Valor = @Valor WHERE ID = @ID";
+
+            // string query = "UPDATE [Pacientes] SET Paciente = @Paciente, Valor = @Valor WHERE ID = @ID";
+            string query = "AtualizarPaciente";
 
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
                 {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
                     // adiciona os parâmetros com os valores dos TextBoxes da linha em edição
                     sqlCommand.Parameters.AddWithValue("@ID", id);
                     sqlCommand.Parameters.AddWithValue("@Paciente", novoNome);
-                    sqlCommand.Parameters.AddWithValue("Valor", novoValor);
+                    sqlCommand.Parameters.AddWithValue("@Valor", novoValor);
 
                     sqlConnection.Open();
                     sqlCommand.ExecuteNonQuery();
@@ -133,10 +141,13 @@ namespace ProjetoWebApp
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 // use a instrução using para garantir que o comando seja descartado
-                string query = "DELETE FROM [Pacientes] WHERE ID = @ID";
+                // string query = "DELETE FROM [Pacientes] WHERE ID = @ID";
+                string query = "DeletarPaciente";
 
                 using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
                 {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
                     // adicione o parâmetro de forma correta
                     sqlCommand.Parameters.AddWithValue("@ID", id);
 

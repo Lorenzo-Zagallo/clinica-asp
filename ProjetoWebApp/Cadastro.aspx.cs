@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -22,16 +23,22 @@ namespace ProjetoWebApp
             if (Page.IsValid)
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["DadosClinicaConnectionString"].ConnectionString;
-                string query = "INSERT INTO [Pacientes] (Paciente, Valor) VALUES (@Paciente, @Valor)";
 
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                //string query = "INSERT INTO [Pacientes] (Paciente, Valor) VALUES (@Paciente, @Valor)";
+                string query = "InserirPaciente";
+
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
                     {
-                        cmd.Parameters.AddWithValue("@Paciente", txtNome.Text);
-                        cmd.Parameters.AddWithValue("@Valor", decimal.Parse(txtValor.Text));
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                        // adiciona os parâmetros
+                        sqlCommand.Parameters.AddWithValue("@Paciente", txtNome.Text);
+                        sqlCommand.Parameters.AddWithValue("@Valor", decimal.Parse(txtValor.Text));
+
+                        sqlConnection.Open();
+                        sqlCommand.ExecuteNonQuery();
                     }
                 }
 
