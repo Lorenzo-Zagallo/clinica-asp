@@ -12,11 +12,14 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using ProjetoWebApp.DAL;
 
 namespace ProjetoWebApp
 {
     public partial class _Default : System.Web.UI.Page
     {
+        PacienteDAL pacienteDAL = new PacienteDAL();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // a propriedade IsPostBack é verdadeira apenas se a página está sendo recarregada
@@ -25,55 +28,24 @@ namespace ProjetoWebApp
             if (!IsPostBack)
             {
                 // se a página for carregada pela primeira vez (ou após um redirect)
-                gdvDados.DataSource = CarregarDadosDoBanco();
+                gdvDados.DataSource = pacienteDAL.ObterTodosPacientes();
                 gdvDados.DataBind();
                 gdvDados.Visible = true;
             }
         }
 
-        protected DataTable CarregarDadosDoBanco()
-        {
-            DataTable dt = new DataTable();
-            string connectionString = ConfigurationManager.ConnectionStrings["DadosClinicaConnectionString"].ConnectionString;
-            
-            // string query = "SELECT ID, Paciente, Valor FROM [Pacientes]";
-            string query = "ObterTodosPacientes";
-
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
-                {
-                    sqlCommand.CommandType = CommandType.StoredProcedure;
-
-                    sqlConnection.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
-                    adapter.Fill(dt);
-                }
-            }
-            return dt;
-        }
-
-        // CRUD - READ
         protected void btnCarregarDados_Click(object sender, EventArgs e)
         {
-            // pega a tabela de dados simulados
-            DataTable dados = CarregarDadosDoBanco();
+            DataTable dados = pacienteDAL.ObterTodosPacientes();
 
-            // conecta a tabela ao GridView
+            // conecta a tabela ao GridView e vincula o DataSource ao controle GridView
             gdvDados.DataSource = dados;
-
-            // vincula o DataSource ao controle GridView
             gdvDados.DataBind();
 
-            // torna o gridView visível
             gdvDados.Visible = true;
-
-            // exibe uma mensagem
             lblMensagem.Text = "Dados carregados com sucesso!";
         }
 
-        // CRUD - UPDATE
-        // 1. evento para salvar a edição da linha
         protected void gdvDados_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             // obtém o ID da linha que está sendo atualizada a partir do DataKeys
@@ -97,67 +69,27 @@ namespace ProjetoWebApp
                 return;
             }
 
-            string connectionString = ConfigurationManager.ConnectionStrings["DadosClinicaConnectionString"].ConnectionString;
-
-            // string query = "UPDATE [Pacientes] SET Paciente = @Paciente, Valor = @Valor WHERE ID = @ID";
-            string query = "AtualizarPaciente";
-
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
-                {
-                    sqlCommand.CommandType = CommandType.StoredProcedure;
-
-                    // adiciona os parâmetros com os valores dos TextBoxes da linha em edição
-                    sqlCommand.Parameters.AddWithValue("@ID", id);
-                    sqlCommand.Parameters.AddWithValue("@Paciente", novoNome);
-                    sqlCommand.Parameters.AddWithValue("@Valor", novoValor);
-
-                    sqlConnection.Open();
-                    sqlCommand.ExecuteNonQuery();
-                }
-            }
+            pacienteDAL.AtualizarPaciente(id, novoNome, novoValor);
 
             // sai do modo de edição
             gdvDados.EditIndex = -1;
 
             // recarrega os dados do banco para atualizar o GridView com as mudanças
-            gdvDados.DataSource = CarregarDadosDoBanco();
+            gdvDados.DataSource = pacienteDAL.ObterTodosPacientes();
             gdvDados.DataBind();
 
             lblMensagem.Text = "Registro atualizado com sucesso!";
         }
 
-        // CRUD - DELETE
-        // 2. evento para deletar a linha
         protected void gdvDados_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             // obtém o ID da linha a partir da coleção DataKeys do GridView
             int id = Convert.ToInt32(gdvDados.DataKeys[e.RowIndex].Value);
 
-            string connectionString = ConfigurationManager.ConnectionStrings["DadosClinicaConnectionString"].ConnectionString;
-
-            // use a instrução using para garantir que a conexão seja fechada
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
-            {
-                // use a instrução using para garantir que o comando seja descartado
-                // string query = "DELETE FROM [Pacientes] WHERE ID = @ID";
-                string query = "DeletarPaciente";
-
-                using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
-                {
-                    sqlCommand.CommandType = CommandType.StoredProcedure;
-
-                    // adicione o parâmetro de forma correta
-                    sqlCommand.Parameters.AddWithValue("@ID", id);
-
-                    sqlConnection.Open();
-                    sqlCommand.ExecuteNonQuery(); // executa o comando DELETE
-                }
-            }
+            pacienteDAL.DeletarPaciente(id);
 
             // recarrega os dados do banco para atualizar no GridView
-            gdvDados.DataSource = CarregarDadosDoBanco();
+            gdvDados.DataSource = pacienteDAL.ObterTodosPacientes();
             gdvDados.DataBind();
 
             lblMensagem.Text = "Registro removido com sucesso!";
@@ -170,7 +102,7 @@ namespace ProjetoWebApp
             gdvDados.EditIndex = e.NewEditIndex;
 
             // atualiza o gridvew para refletir o modo de edição
-            DataTable dados = CarregarDadosDoBanco();
+            DataTable dados = pacienteDAL.ObterTodosPacientes();
             gdvDados.DataSource = dados;
             gdvDados.DataBind();
         }
@@ -182,7 +114,7 @@ namespace ProjetoWebApp
             gdvDados.EditIndex = -1;
 
             // reverte a exibição do GridView
-            DataTable dados = CarregarDadosDoBanco();
+            DataTable dados = pacienteDAL.ObterTodosPacientes();
             gdvDados.DataSource = dados;
             gdvDados.DataBind();
         }

@@ -14,5 +14,10 @@
         <asp:RequiredFieldValidator ID="rfvValor" runat="server" ControlToValidate="txtValor" ErrorMessage="O valor é obrigatório." ValidationGroup="CadastroGroup"></asp:RequiredFieldValidator>
     </asp:Panel>
 
+    <asp:ValidationSummary ID="ValidationSummary1" runat="server"
+        HeaderText="Por Favor, corrija os seguintes erros:"
+        ForeColor="Red"
+        ValidationGroup="CadastroGroup" />
+
     <asp:Button ID="btnSalvar" runat="server" Text="Salvar Paciente" OnClick="btnSalvar_Click" ValidationGroup="CadastroGroup"/>
 </asp:Content>
