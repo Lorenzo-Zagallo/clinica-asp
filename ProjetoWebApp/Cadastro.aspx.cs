@@ -24,7 +24,7 @@ namespace ProjetoWebApp
                 PacienteDAL pacienteDAL = new PacienteDAL();
                 pacienteDAL.InserirPaciente(txtNome.Text, decimal.Parse(txtValor.Text));
 
-                lblMensagem.Text = "Novo paciente salvo com sucesso!";
+                // lblMensagem.Text = "Novo paciente salvo com sucesso!";
                 Response.Redirect("~/Dashboard.aspx");
             }
         }

@@ -15,22 +15,13 @@ namespace ProjetoWebApp
     {
 
         /// <summary>
-        /// Controle lblMensagem.
+        /// Controle MenuSimples1.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensagem;
-
-        /// <summary>
-        /// Controle pnlCadastro.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCadastro;
+        protected global::ProjetoWebApp.UserControls.MenuSimples MenuSimples1;
 
         /// <summary>
         /// Controle lblNome.
@@ -87,15 +78,6 @@ namespace ProjetoWebApp
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvValor;
 
         /// <summary>
-        /// Controle ValidationSummary1.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
-
-        /// <summary>
         /// Controle btnSalvar.
         /// </summary>
         /// <remarks>
@@ -103,5 +85,14 @@ namespace ProjetoWebApp
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSalvar;
+
+        /// <summary>
+        /// Controle ValidationSummary1.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
     }
 }

@@ -33,15 +33,6 @@ namespace ProjetoWebApp
         protected global::System.Web.UI.WebControls.Button btnCarregarDados;
 
         /// <summary>
-        /// Controle gdvDados.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gdvDados;
-
-        /// <summary>
         /// Controle lblMensagem.
         /// </summary>
         /// <remarks>
@@ -49,5 +40,14 @@ namespace ProjetoWebApp
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensagem;
+
+        /// <summary>
+        /// Controle gdvDados.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gdvDados;
     }
 }
